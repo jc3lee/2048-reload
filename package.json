@@ -13,7 +13,8 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-spring": "^9.7.3"
+    "react-spring": "^9.7.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
