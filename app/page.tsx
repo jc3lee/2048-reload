@@ -47,7 +47,6 @@ const Game2048 = () => {
   const highscoreRef = useRef<HTMLParagraphElement>(null);
   let totalScore = 0;
   let [reached2048, setReached2048] = useState(false);
-  let [continueGame, setContinueGame] = useState(true);
 
   let prevTotalScoreArr: number[] = [];
 
@@ -76,10 +75,6 @@ const Game2048 = () => {
       gameOverRef.current.classList.remove("showGameOver");
   };
   if (reached2048) showWin();
-  if (!continueGame) {
-    gameOver = true;
-    showWin();
-  }
 
   const getBack = (value: number) => {
     switch (value) {
@@ -993,8 +988,6 @@ const Game2048 = () => {
     updateScore();
     gameOver = false;
     didUndo = false;
-    setReached2048(false);
-    setContinueGame(true);
   };
 
   const handleUndo = () => {
@@ -1213,7 +1206,6 @@ const Game2048 = () => {
   };
 
   const handleContinue = () => {
-    setContinueGame(true);
     gameOver = false;
     hideWin();
   };
@@ -1308,34 +1300,20 @@ const Game2048 = () => {
 
       <div className="flex justify-center items-center py-4 topContainerBtm [&>*]:text-[#eee] [&>*]:w-[35px][&>*]:h-[35px] [&>*]:rounded-[4px] [&>*]:border-none [&>*]:bg-[#bcada1] [&>*]:cursor-pointer [&>*]:flex [&>*]:justify-center [&>*]:items-center space-x-4">
         <button
-          className="flex justify-center hover:opacity-[85] focus:opacity-[85] p-2 space-x-2 back"
+          className="flex justify-center hover:opacity-[85] focus:opacity-[85] p-2 back"
           onClick={handleUndo}
         >
           <span className="font-bold text-xl text-white tracking-wide relative -top-0.5">
             Undo
           </span>
-          <Image
-            className="object-contain w-6 h-8 object-center "
-            src="/icons/back.png"
-            alt="back"
-            width={18}
-            height={18}
-          />
         </button>
         <button
-          className="flex justify-center hover:opacity-[85] focus:opacity-[85] reset p-2 space-x-2"
+          className="flex justify-center hover:opacity-[85] focus:opacity-[85] reset p-2 "
           onClick={resetGame}
         >
           <span className="font-bold text-xl text-white tracking-wide relative -top-0.5">
             Reset
           </span>
-          <Image
-            className="object-contain w-8 h-8 object-center "
-            src="/icons/reset.png"
-            alt="reset"
-            width={18}
-            height={18}
-          />
         </button>
       </div>
       {/* <div className="mx-auto text-center max-w-[300px] controls">
